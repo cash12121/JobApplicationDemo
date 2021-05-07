@@ -13,7 +13,7 @@ import java.util.Date;
  *
  * @author Cash Carlson
  */
-public class Job {
+public class Job implements Comparable<Job> {
     private int id;
     private boolean active;
     private LocalDate dateCreated;
@@ -70,6 +70,7 @@ public class Job {
         return display;
     }
     
+    @Override
     public int compareTo(Job job) {
         int compared = 0;
         
@@ -243,6 +244,8 @@ public class Job {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+    
     
     
 }

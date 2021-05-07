@@ -1,2 +1,7 @@
-com\cashcarlson\jobapplicationdemo\dataobjects\Job.class
+com\cashcarlson\jobapplicationdemo\dataaccess\DAOPattern.class
+com\cashcarlson\jobapplicationdemo\dataaccess\JobDataException.class
+com\cashcarlson\jobapplicationdemo\dataaccess\csv\JobDAOCSV.class
 com\cashcarlson\jobapplicationdemo\JobServlet.class
+com\cashcarlson\jobapplicationdemo\dataobjects\Application.class
+com\cashcarlson\jobapplicationdemo\dataobjects\Attachment.class
+com\cashcarlson\jobapplicationdemo\dataobjects\Job.class

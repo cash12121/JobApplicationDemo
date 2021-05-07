@@ -1,0 +1,224 @@
+/* 
+    Created on : May 5, 2021, 10:51:32 PM
+    Author     : Cash Carlson
+*/
+/* global reset */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* start of doc */
+
+html {
+    background-color: hsl(0, 0%, 50%);
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    color: hsl(0, 0%, 90%);
+}
+
+/*nav */
+
+header {
+    background-color: hsl(0, 0%, 30%);
+    overflow: hidden;
+    width: 100%;
+    display: inline-flex;
+    position: fixed;
+    height: 3.125rem;
+    z-index: 1;
+}
+
+.nav-menu {
+    float: left;
+}
+
+.nav-menu ul {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    vertical-align:top;
+    list-style: none;
+}
+
+.nav-menu ul li {
+    float: left;
+}
+
+.nav-menu a {
+    float: right;
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav-menu a:hover {
+    background-color: #fff;
+    color: #373737;
+}
+
+/* main */
+
+main {
+    padding-top: 4rem;
+}
+
+
+/* Job List */
+
+#jobs {
+    width: 90%;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px
+}
+
+.job {
+    width: 90%;
+    background-color: hsl(0, 0%, 30%);
+    border-radius: 1.2em;
+    padding: 1rem;
+    display: grid;
+    gap: 5px;
+    justify-items: left;
+}
+
+.job h2 {
+    margin-left: 0;
+}
+
+@media only screen and (min-width: 62.5em) {
+    .job {
+        width: 50%;
+    }
+}
+
+/* Pagination */
+
+.pagination {
+    text-align: center;
+    font-size: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pagination a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    background-color: hsl(0, 0%, 30%);
+    font-size: 16px;
+}
+.pagination a:hover {
+    color: white;
+    background-color: hsl(0, 0%, 45%);
+}
+.pagination a.active {
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(0, 0%, 22%);
+}
+
+/* container misc */
+
+
+.container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 62.5em) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        
+    }
+}
+
+/* Job Controls */
+
+#job {
+    border-radius: 1.2em;
+    background-color: hsl(0, 0%, 30%);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 90%;
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: .5rem;
+    justify-items: left;
+    font-weight: bold;
+}
+
+#job h1, h2, p {
+    margin-left: 1rem;
+}
+
+
+/* Form Controls */
+
+#form {
+    width: 90%;
+    display: grid;
+    background-color: hsl(0, 0%, 30%);
+    justify-items: center;
+    border-radius: 1.2em;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+#form form {
+    width: 90%;
+    display: grid;
+    justify-items: left;
+}
+
+#form label {
+    padding-top: 1rem;
+    padding-bottom: .25rem;
+    justify-self: left;
+    text-align: left;
+    font-weight: bold;
+}
+
+#form label span {
+    font-weight: normal;
+    color: hsl(0, 0%, 80%);
+    opacity: 90%;
+}
+
+#form input {
+    display: block;
+    width: 95%;
+    padding: .5rem;
+    font-size: 1rem;
+    
+}
+
+#submit {
+    margin-top: 1rem;
+    padding: .75rem;
+    background-color: hsl(0, 0%, 55%);
+    color:hsl(0, 0%, 85%);
+    border: none;
+    font-weight: bolder;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 1.2rem;
+    box-shadow: 0 0.45rem .75rem rgba(0,0,0,0.15);
+}

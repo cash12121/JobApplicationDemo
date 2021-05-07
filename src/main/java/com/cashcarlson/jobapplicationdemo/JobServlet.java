@@ -5,8 +5,14 @@
  */
 package com.cashcarlson.jobapplicationdemo;
 
+import com.cashcarlson.jobapplicationdemo.dataaccess.DAOPattern;
+import com.cashcarlson.jobapplicationdemo.dataaccess.csv.JobDAOCSV;
+import com.cashcarlson.jobapplicationdemo.dataobjects.Job;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +23,20 @@ import javax.servlet.http.HttpServletResponse;
  * @author Cash Carlson
  */
 public class JobServlet extends HttpServlet {
+    private static final String FILE_NAME = "job-data.csv";
+    private static final String FILE_PATH = "WEB-INF/csv/";
+    
+    SortedSet<Job> jobs;
+    
+    
+    private void getJobs(DAOPattern dao) {
+        try {
+            //ArrayList<Job> temp = dao.getAllJobs();
+            jobs = dao.getAllJobs();
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,19 +49,54 @@ public class JobServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet JobServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet JobServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        DAOPattern dao = 
+            new JobDAOCSV(getServletContext().getRealPath(FILE_PATH + FILE_NAME));
+        getJobs(dao);
+        
+        String jobId = request.getParameter("id");
+        if(jobId != null && !jobId.equals("")) {
+            try {
+                Job job = dao.getJobById(jobId);
+                if(job != null) {
+                    request.setAttribute("job", job);
+                    request.getRequestDispatcher("/WEB-INF/jsp/view/job.jsp").forward(request, response);
+                }
+            } catch (Exception ex) {
+                ex.getMessage();
+            }
         }
+        
+        int page = 1;
+        int jobsPerPage = 4;
+        int begin = 0;
+        int end = 0;
+        int maxPages = jobs.size() / jobsPerPage;
+        if(jobs.size() % jobsPerPage != 0) {
+            maxPages++;
+        }
+        
+        String pageStr = request.getParameter("page");
+        if(pageStr != null && !pageStr.equals("")) {
+            try {
+                page = Integer.parseInt(pageStr);
+                if (page < 1) {
+                    page = 1;
+                } else if (page > maxPages) {
+                    page = maxPages;
+                }
+            } catch(NumberFormatException ex)  {
+                page = 1;
+            }
+        }
+        
+        begin = (page - 1) * jobsPerPage;
+        end = begin + jobsPerPage - 1;
+        request.setAttribute("jobs", jobs);
+        request.setAttribute("begin", begin);
+        request.setAttribute("end", end);
+        request.setAttribute("maxPages", maxPages);
+        request.setAttribute("currentPage", page);
+        request.getRequestDispatcher("/WEB-INF/jsp/view/jobList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
