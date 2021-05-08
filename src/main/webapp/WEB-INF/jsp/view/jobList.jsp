@@ -17,6 +17,13 @@
                     <li>
                         <a href="<c:url value="/applications"/>">Applications</a>
                     </li>
+                    <c:if test="${sessionScope.username != null}">
+                        <li>
+                            <a href="<c:url value="/login">
+                                   <c:param name="logout" value="logout"/>
+                               </c:url>">Logout</a>
+                        </li>
+                    </c:if>
                 </ul>
             </nav>
         </header>

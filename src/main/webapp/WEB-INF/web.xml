@@ -4,6 +4,18 @@
         <servlet-name>JobServlet</servlet-name>
         <servlet-class>com.cashcarlson.jobapplicationdemo.JobServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApplicationServlet</servlet-name>
+        <servlet-class>com.cashcarlson.jobapplicationdemo.ApplicationServlet</servlet-class>
+        <multipart-config>
+            <file-size-threshold>5242880</file-size-threshold>
+            <max-file-size>20971520</max-file-size>
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.cashcarlson.jobapplicationdemo.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>JobServlet</servlet-name>
         <url-pattern>/jobs</url-pattern>
@@ -19,6 +31,15 @@
             <default-content-type>text/html</default-content-type>
         </jsp-property-group>
     </jsp-config>
+    <servlet-mapping>
+        <servlet-name>ApplicationServlet</servlet-name>
+        <url-pattern>/applications</url-pattern>
+        <url-pattern>/application</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

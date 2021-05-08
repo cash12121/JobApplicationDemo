@@ -23,6 +23,13 @@
                     <li>
                         <a href="<c:url value="/applications"/>">Applications</a>
                     </li>
+                    <c:if test="${sessionScope.username != null}">
+                        <li>
+                            <a href="<c:url value="/login">
+                                   <c:param name="logout" value="logout"/>
+                               </c:url>">Logout</a>
+                        </li>
+                    </c:if>
                 </ul>
             </nav>
         </header>
@@ -53,7 +60,9 @@
                 </div>
                 <div id="form">
                     <h1>Apply to this Job:</h1>
-                    <form action="/applications" method="POST">
+                    <form action="applications" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="jobId" value="<c:out value="${job.id}"/>">
+                        <input type="hidden" name="jobTitle" value="<c:out value="${job.title}"/>">
                         <label for="first-name">First Name:</label>
                         <input type="text" id="first-name" name="firstName">
                         <label for="last-name">Last Name:</label>

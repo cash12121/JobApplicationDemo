@@ -16,7 +16,9 @@ public class Application implements Comparable<Application> {
     //Appplication Info
     private int id;
     private int jobId;
+    private String jobTitle;
     private Instant dateTimeSubmitted;
+    private boolean active;
     
     //User info
     private String firstName;
@@ -52,7 +54,7 @@ public class Application implements Comparable<Application> {
     public Application(int id, int jobId, Instant dateTimeSubmitted, 
             String firstName, String lastName, String email, String phone, 
             Attachment resumeUpload, double desiredSalary, 
-            LocalDate earliestStartDate) {
+            LocalDate earliestStartDate, String jobTitle) {
         setId(id);
         setJobId(jobId);
         setDateTimeSubmitted(dateTimeSubmitted);
@@ -63,6 +65,8 @@ public class Application implements Comparable<Application> {
         setResumeUpload(resumeUpload);
         setDesiredSalary(desiredSalary);
         setEarliestStartDate(earliestStartDate);
+        setActive(true);
+        setJobTitle(jobTitle);
     }
     
     @Override
@@ -320,6 +324,34 @@ public class Application implements Comparable<Application> {
      */
     public void setStartDateError(String startDateError) {
         this.startDateError = startDateError;
+    }
+
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    /**
+     * @return the jobTitle
+     */
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    /**
+     * @param jobTitle the jobTitle to set
+     */
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
     
     
